@@ -122,7 +122,7 @@
     return d;//返回时间
   },
 ```
-##特别注意,凡小程序里涉及到时间的,例如2019-01-03 09:02:01,ios系统无法解析-,会导致出现NaN-NaN-NaN NaN:NaN:NaN,所以,要用`replace(/\-/g, "/")`,将-替换,使用方法:
+## :exclamation:特别注意,凡小程序里涉及到时间的,例如2019-01-03 09:02:01,ios系统无法解析-,会导致出现NaN-NaN-NaN NaN:NaN:NaN,所以,要用`replace(/\-/g, "/")`,将-替换,使用方法:
 ```JavaScript
 let time = '2019-01-03 09:02:01';
 time = time.replace(/\-/g, "/");
