@@ -4,7 +4,7 @@
 该小程序是编者入行业以来的第一个小程序,代码逻辑思维不够成熟,因而使用面向过程的方式编写了这个小程序,致使代码顺序比较乱;其中部分变量,函数及注释命名不太规范,大量的`console.log()`没来得及注释清理,有可能使得小程序在使用过程中缓存体积越来越大
 ## 1.2文件配置说明
 在`project.config.json`里的`appid`里填上你申请的小程序appid,效果如下:
-```javascript
+```json
 	"compileType": "miniprogram",
 	"libVersion": "2.4.3",
 	"appid": "你的appid",
@@ -80,6 +80,57 @@
 --------withdrawlDeposit(提现)  
 --------withdrawlDeposit----withdrawlAgency(代理商提现)  
 ----utils(小程序引用文件目录)  
+-------[`qqmap-wx-jssdk.min.js`](http://3gimg.qq.com/lightmap/xcx/jssdk/qqmap-wx-jssdk1.0.zip)(根据经纬度获取详细地址的js)  
+-------`utils.js`(这个我也不会到该干啥,,里面的是别人的微信支付,有点复杂)  
 
+## 举几个代码小例子
+```JavaScript
+  // 去除转义
+  regExp:function(e){
+    e = e.replace(new RegExp('↵', 'g'), '')
+    return JSON.parse(e)
+  },
+    // 论坛发表一个评价的时间转换,今天是2019年1月3日,那么返回的2019-01-03 09:02:01转换为今天9点02分
+  bbsTime:function(e){
+    var timer = e;
+    e = e.replace(/\-/g, "/");
+    var now = new Date();
+    var time = new Date(e);
+    var year = time.getFullYear().toString();
+    var month = (time.getMonth() + 1).toString();
+    var day = time.getDate().toString();
+    var h = time.getHours().toString();
+    var min = time.getMinutes().toString();
+    if(h<10){
+      h = "0"+h
+    }
+    if(min<10){
+      min = "0"+min
+    }
+    var res,y,m,d;
+    if (year == (now.getFullYear()).toString()){
+      y = "";
+    } else if (y < now.getFullYear()){
+      y = year+"年";
+    }
+    if ((year + month + day).toString() == (now.getFullYear()).toString() + (now.getMonth()+1).toString() + (now.getDate()).toString()){
+      d = "今天" + h + ":" + min;
+    }else{
+      d = year+"年"+month+"月"+day+"日"+h+":"+min;
+    }
+    d = d.toString()
+    return d;//返回时间
+  },
+```
+##特别注意,凡小程序里涉及到时间的,例如2019-01-03 09:02:01,ios系统无法解析-,会导致出现NaN-NaN-NaN NaN:NaN:NaN,所以,要用`replace(/\-/g, "/")`,将-替换,使用方法:
+```JavaScript
+let time = '2019-01-03 09:02:01';
+time = time.replace(/\-/g, "/");
+//console.log(time)//结果为:2019/01/03 09:02:01
+```
+注意,2019-01-03 09:02:01必须为字符串类型,若不是,请手动`toString()`
 ##
-##
+# The End  
+`author:[mingchen3398](https://github.com/mingchen3398)
+time:2019-01-03 11:55:21 
+v:1.00`
