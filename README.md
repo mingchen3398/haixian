@@ -131,6 +131,6 @@ time = time.replace(/\-/g, "/");
 注意,2019-01-03 09:02:01必须为字符串类型,若不是,请手动`toString()`
 ##
 # The End  
-`author:[mingchen3398](https://github.com/mingchen3398)
-time:2019-01-03 11:55:21 
-v:1.00`
+author:[mingchen3398](https://github.com/mingchen3398)  
+time:2019-01-03 11:55:21   
+v:1.00  
